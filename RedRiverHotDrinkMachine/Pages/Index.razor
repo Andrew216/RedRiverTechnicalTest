@@ -1,0 +1,62 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hot Drinks Machine</h1>
+
+<div class="form-control">
+ <label>Please select a drink:</label>
+           <select class="form-control" @bind="@selectedValue" required>
+               <option value="">Please select</option>
+               @foreach (var r in arrDrinks)
+               {
+                   <option value="@r"> @r</option>
+               }
+           </select>
+            <br />
+           <button class="btn btn-primary" @onclick="getRecipe" >Get Recipe</button>
+
+           <br /> <br />
+            
+           <span>@recipeSteps</span>
+</div>
+@code{
+    private string selectedValue = string.Empty;
+    string[] arrDrinks = {"Lemon Tea", "Coffee", "Chocolate"};
+    string recipeSteps= string.Empty;
+
+    private void getRecipe()
+    {
+        switch (selectedValue)
+        {
+            case "Lemon Tea":
+                recipeSteps ="<b>Lemon Tea</b>"
+                +"\n(1)Boil some water"
+                +"\n(2)Steep the water in the tea"
+                +"\n(3)Pour tea in the cup"
+                +"\n(4)Add lemon " ;
+                break;
+            case "Coffee":
+                recipeSteps = "<b>Coffee</b>"
+                + "\n(1)Boil some water"
+                + "\n(2)Brew the coffee grounds"
+                + "\n(3)Pour coffee in the cup"
+                + "\n(4)Add sugar and milk";
+                break;
+            case "Chocolate":
+                recipeSteps = "<b>Chocolate</b>"
+                + "\n(1)Boil some water"
+                + "\n(2)Add drinking chocolate powder to the water"
+                + "\n(3)Pour chocolate in the cup";
+                break;
+
+        }
+
+
+        
+
+
+    }
+
+
+}
